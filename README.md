@@ -1,8 +1,4 @@
-#Project Activity 3 
-#IT26210 Group#8 - 4ITH
+Project Activity 3 / IT26210 Group#8 - 4ITH /
 
-#Members:
-#Estolano, Julius
-#Queja, Charliemagne
-#Ramos, Erico
-#Sing, James
+Members:
+Estolano, Queja, Ramos, Sing
