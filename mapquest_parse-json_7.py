@@ -10,6 +10,7 @@ print("Improved by Group#8 - 4-ITI")
 print("========================================")
 
 while True:
+    # Ask user for input regarding starting location & destination
     orig = input("Starting Location: ")
     if orig == "quit" or orig == "q":
         print("========================================")
@@ -23,6 +24,7 @@ while True:
     
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
 
+    # Get json data request
     json_data = requests.get(url).json()
 
     print("URL " + (url))
@@ -30,6 +32,7 @@ while True:
     json_data = requests.get(url).json()
     json_status = json_data["info"]["statuscode"]
 
+    # Successful json route call
     if json_status == 0:
         print("API Status " + str(json_status) + " = A successful route call.\n")
         print("========================================")
@@ -41,6 +44,7 @@ while True:
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
         print("========================================")
+    # Unsuccessful json route call
     elif json_status == 402:
         print("****************************************")
         print("Oops! We encountered an error.")
