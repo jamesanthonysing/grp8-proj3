@@ -15,12 +15,12 @@ while True:
     # Ask user for input regarding starting location & destination
     orig = input("Starting Location: ")
     if orig == "quit" or orig == "q":
-        print("========================================")
+        print("----------------------------------------")
         print("Thank you for using MapQuest Pathfinder!")
         break
     dest = input("Destination: ")
     if dest == "quit" or dest == "q":
-        print("========================================")
+        print("----------------------------------------")
         print("Thank you for using MapQuest Pathfinder!")
         break
     
@@ -29,11 +29,13 @@ while True:
     # Get json data request
     json_data = requests.get(url).json()
 
+    print("----------------------------------------")
     # Printing Geo Quality Code
     print("Geo Quality Code of " + (orig) + " :" + (json_data["route"]["locations"][0]["geocodeQualityCode"]))
     print("Geo Quality Code of "+ (dest) + " :" + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
-
+    print("----------------------------------------")
     print("URL " + (url))
+    print("----------------------------------------")
 
     json_data = requests.get(url).json()
     json_status = json_data["info"]["statuscode"]
@@ -41,18 +43,18 @@ while True:
     # Output for successful json route call
     if json_status == 0:
         print("API Status " + str(json_status) + " = Congratulations! A successful route call.\n")
-        print("========================================")
+        print("----------------------------------------")
         print("Directions from " + (orig) + " to " + (dest))
         print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
 
-        print("========================================")
+        print("----------------------------------------")
         print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
         print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
 
-        print("========================================")
+        print("----------------------------------------")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
-        print("========================================")
+        print("----------------------------------------")
     # Output for unsuccessful json route calls
     elif json_status == 402:
         print("****************************************")
