@@ -15,12 +15,12 @@ while True:
     # Ask user for input regarding starting location & destination
     orig = input("Starting Location: ")
     if orig == "quit" or orig == "q":
-        print("----------------------------------------")
+        print("========================================")
         print("Thank you for using MapQuest Pathfinder!")
         break
     dest = input("Destination: ")
     if dest == "quit" or dest == "q":
-        print("----------------------------------------")
+        print("========================================")
         print("Thank you for using MapQuest Pathfinder!")
         break
     
@@ -45,13 +45,12 @@ while True:
         print("API Status " + str(json_status) + " = Congratulations! A successful route call.\n")
         print("----------------------------------------")
         print("Directions from " + (orig) + " to " + (dest))
-        print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
-
         print("----------------------------------------")
+        print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
         print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
         print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
-
         print("----------------------------------------")
+        print("Routes: ")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
         print("----------------------------------------")
