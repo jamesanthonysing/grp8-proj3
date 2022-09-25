@@ -1,13 +1,22 @@
-#import needed libraries
+# import needed libraries
 import urllib.parse
 import requests
+
+# Menu definition
+def menu():
+    print("----------------------------------------")
+    print("What would you like to know about \n"+ orig +" to "+ dest +"?")
+    print("[1] General Info | [2] Restrictions")
+    print("[3] Miscellaneous | [4] Routes")
+    print("[0] Exit Menu")
+    print("----------------------------------------")
 
 # Import MapQuest API
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "PJv71zxlt65ihzFpAKRuP6HQ3zaCJDQ9"
 
 print("========================================")
-print("MapQuest Pathfinder 2.0")
+print("MapQuest Pathfinder")
 print("Improved by Group#8 - 4-ITI")
 print("========================================")
 
@@ -30,10 +39,6 @@ while True:
     json_data = requests.get(url).json()
 
     print("----------------------------------------")
-    # Printing Geo Quality Code
-    print("Geo Quality Code of " + (orig) + " :" + (json_data["route"]["locations"][0]["geocodeQualityCode"]))
-    print("Geo Quality Code of "+ (dest) + " :" + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
-    print("----------------------------------------")
     print("URL " + (url))
     print("----------------------------------------")
 
@@ -43,26 +48,54 @@ while True:
     # Output for successful json route call
     if json_status == 0:
         print("API Status " + str(json_status) + " = Congratulations! A successful route call.\n")
-        print("----------------------------------------")
-        print("Directions from " + (orig) + " to " + (dest))
-        print("----------------------------------------")
-        print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
-        print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
-        print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
-        print("----------------------------------------")
-        print("Has toll road: " + str(json_data["route"]["hasTollRoad"]))
-        print("Has tunnel: " + str(json_data["route"]["hasTunnel"]))
-        print("Has highway: " + str(json_data["route"]["hasHighway"]))
-        print("----------------------------------------")
-        print("Access restriction: " + str(json_data["route"]["hasAccessRestriction"]))
-        print("Timed restriction: " + str(json_data["route"]["hasSeasonalClosure"]))
-        print("Seasonal closure: " + str(json_data["route"]["hasSeasonalClosure"]))
-        print("Country cross: " + str(json_data["route"]["hasCountryCross"]))
-        print("----------------------------------------")
-        print("Routes: ")
-        for each in json_data["route"]["legs"][0]["maneuvers"]:
-            print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
-        print("----------------------------------------")
+        # Options
+        menu()
+        loop = 1
+    
+        while loop == 1:
+            # Ask user for option number from menu
+            option = int(input("Please enter your option: "))
+
+            if option == 1:
+                print("SELECTED: General Info")
+                print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
+                print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
+                print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
+                
+                menu()
+            elif option == 2:
+                print("SELECTED: Restrictions")
+                print("Access restriction: " + str(json_data["route"]["hasAccessRestriction"]))
+                print("Timed restriction: " + str(json_data["route"]["hasSeasonalClosure"]))
+                print("Seasonal closure: " + str(json_data["route"]["hasSeasonalClosure"]))
+                print("Country cross: " + str(json_data["route"]["hasCountryCross"]))
+                
+                menu()
+            elif option == 3:
+                print("SELECTED: Miscellaneous")
+                print("Has toll road: " + str(json_data["route"]["hasTollRoad"]))
+                print("Has tunnel: " + str(json_data["route"]["hasTunnel"]))
+                print("Has highway: " + str(json_data["route"]["hasHighway"]))
+                
+                # Geo Quality Code
+                print("Geo Quality Code of " + orig + ": " + (json_data["route"]["locations"][0]["geocodeQualityCode"]))
+                print("Geo Quality Code of "+ dest + ": " + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
+
+                menu()
+            elif option == 4:
+                print("SELECTED: Routes")
+                for each in json_data["route"]["legs"][0]["maneuvers"]:
+                    print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+                
+                menu()
+            elif option == 0:
+                loop = 0
+                print("Thank you for using the menu.")
+                print("----------------------------------------")
+            else:
+                print("Oops! Invalid option. Please choose a number from the menu.")
+                menu()
+
     # Output for unsuccessful json route calls
     elif json_status == 402:
         print("****************************************")
