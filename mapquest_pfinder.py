@@ -45,7 +45,7 @@ while True:
     json_data = requests.get(url).json()
     json_status = json_data["info"]["statuscode"]
 
-    # Output for successful json route call
+    # Output if successful json route call
     if json_status == 0:
         print("API Status " + str(json_status) + " = Congratulations! A successful route call.\n")
         # Options
@@ -96,7 +96,7 @@ while True:
                 print("Oops! Invalid option. Please choose a number from the menu.")
                 menu()
 
-    # Output for unsuccessful json route calls
+    # Output if unsuccessful json route calls
     elif json_status == 402:
         print("****************************************")
         print("Oops! We encountered an error.")
