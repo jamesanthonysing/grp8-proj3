@@ -58,11 +58,7 @@ while True:
     
         while loop == 1:
             # Ask user for option number from menu
-<<<<<<< HEAD
             option = (input(Fore.CYAN +"Please enter your option: "))
-=======
-            option = (input("Please enter your option: "))
->>>>>>> 42674714d76366651ba74ba1933db5ca6040b8d5
 
             if option == "1":
                 print("SELECTED: General Info")
