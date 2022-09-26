@@ -26,6 +26,8 @@ print("========================================")
 
 while True:
     # Ask user for input regarding starting location & destination
+    print("Welcome! Please enter field/s. Use quit/q to end program.")
+
     orig = input(Style.BRIGHT + "Starting Location: ")
     if orig == "quit" or orig == "q":
         print("========================================")
