@@ -54,16 +54,16 @@ while True:
     
         while loop == 1:
             # Ask user for option number from menu
-            option = int(input("Please enter your option: "))
+            option = (input("Please enter your option: "))
 
-            if option == 1:
+            if option == "1":
                 print("SELECTED: General Info")
                 print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
                 print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
                 print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
                 
                 menu()
-            elif option == 2:
+            elif option == "2":
                 print("SELECTED: Restrictions")
                 print("Access restriction: " + str(json_data["route"]["hasAccessRestriction"]))
                 print("Timed restriction: " + str(json_data["route"]["hasSeasonalClosure"]))
@@ -71,7 +71,7 @@ while True:
                 print("Country cross: " + str(json_data["route"]["hasCountryCross"]))
                 
                 menu()
-            elif option == 3:
+            elif option == "3":
                 print("SELECTED: Miscellaneous")
                 print("Has toll road: " + str(json_data["route"]["hasTollRoad"]))
                 print("Has tunnel: " + str(json_data["route"]["hasTunnel"]))
@@ -82,13 +82,13 @@ while True:
                 print("Geo Quality Code of "+ dest + ": " + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
 
                 menu()
-            elif option == 4:
+            elif option == "4":
                 print("SELECTED: Routes")
                 for each in json_data["route"]["legs"][0]["maneuvers"]:
                     print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
                 
                 menu()
-            elif option == 0:
+            elif option == "0":
                 loop = 0
                 print("Thank you for using the menu.")
                 print("----------------------------------------")
