@@ -11,7 +11,7 @@ def menu():
     print("----------------------------------------")
     print(Fore.MAGENTA + "What would you like to know about \n"+ orig +" to "+ dest +"?")
     print(Fore.BLUE +  "[1]" + Fore.WHITE + " General Info | " + Fore.BLUE +  "[2]" + Fore.WHITE +  " Restrictions")
-    print(Fore.BLUE +  "[3]" + Fore.WHITE + " Miscellaneous | " + Fore.BLUE +  "[4]" + Fore.WHITE +  " Routes")
+    print(Fore.BLUE +  "[3]" + Fore.WHITE + " Miscellaneous | " + Fore.BLUE +  "[4]" + Fore.WHITE +  " Directions")
     print(Fore.RED + "[0]" + Fore.WHITE + " Exit Menu")
     print("----------------------------------------")
 
@@ -21,7 +21,7 @@ key = "PJv71zxlt65ihzFpAKRuP6HQ3zaCJDQ9"
 
 print("========================================")
 print(Fore.RED + "         " + "MapQuest Pathfinder")
-print(Fore.CYAN + "     " + "Improved by Group#8 - 4-ITI")
+print(Fore.CYAN + "     " + "Developed by Group#8 - 4-ITI")
 print("========================================")
 
 while True:
@@ -62,9 +62,20 @@ while True:
 
             if option == "1":
                 print("SELECTED: General Info")
-                print("Trip Duration:   " + (json_data["route"]["formattedTime"]))
-                print("Kilometers:      " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
-                print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
+                print("Trip Duration: " + (json_data["route"]["formattedTime"]) + " \n")
+                
+                distMi = (json_data["route"]["distance"])
+                # Distance conversion
+                distKm = (json_data["route"]["distance"])*1.61
+                distM = (json_data["route"]["distance"])*1609.344
+                
+                print("Distance: ")
+                print("(in mi): " + str("{:.2f}".format(distMi)) + " mi")
+                print("(in km): " + str("{:.2f}".format(distKm)) + " km")
+                print("(in m): " + str("{:.2f}".format(distM)) + " m \n")
+
+                print("Fuel Used (in ltr): ")
+                print(str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)) + " ltr")
                 
                 menu()
             elif option == "2":
@@ -79,7 +90,7 @@ while True:
                 print("SELECTED: Miscellaneous")
                 print("Has toll road: " + str(json_data["route"]["hasTollRoad"]))
                 print("Has tunnel: " + str(json_data["route"]["hasTunnel"]))
-                print("Has highway: " + str(json_data["route"]["hasHighway"]))
+                print("Has highway: " + str(json_data["route"]["hasHighway"]) + "\n")
                 
                 # Geo Quality Code
                 print("Geo Quality Code of " + orig + ": " + (json_data["route"]["locations"][0]["geocodeQualityCode"]))
@@ -87,7 +98,7 @@ while True:
 
                 menu()
             elif option == "4":
-                print("SELECTED: Routes")
+                print("SELECTED: Directions")
                 for each in json_data["route"]["legs"][0]["maneuvers"]:
                     print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
                 
