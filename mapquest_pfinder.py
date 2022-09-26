@@ -29,12 +29,12 @@ while True:
     orig = input(Style.BRIGHT + "Starting Location: ")
     if orig == "quit" or orig == "q":
         print("========================================")
-        print("Thank you for using MapQuest Pathfinder!")
+        print(Fore.GREEN + "Thank you for using MapQuest Pathfinder!")
         break
     dest = input(Style.BRIGHT + "Destination: ")
     if dest == "quit" or dest == "q":
         print("========================================")
-        print("Thank you for using MapQuest Pathfinder!")
+        print(Fore.GREEN + "Thank you for using MapQuest Pathfinder!")
         break
     
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
