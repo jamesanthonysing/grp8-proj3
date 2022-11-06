@@ -75,14 +75,10 @@ while True:
                 print("(in mi): " + str("{:.2f}".format(distMi)) + " mi")
                 print("(in km): " + str("{:.2f}".format(distKm)) + " km")
                 print("(in m): " + str("{:.2f}".format(distM)) + " m \n")
-
-                print("Fuel Used (in ltr): ")
-                print(str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)) + " ltr")
                 
                 menu()
             elif option == "2":
                 print("SELECTED: Restrictions")
-                print("Access restriction: " + str(json_data["route"]["hasAccessRestriction"]))
                 print("Timed restriction: " + str(json_data["route"]["hasSeasonalClosure"]))
                 print("Seasonal closure: " + str(json_data["route"]["hasSeasonalClosure"]))
                 print("Country cross: " + str(json_data["route"]["hasCountryCross"]))
