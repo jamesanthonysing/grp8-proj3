@@ -15,8 +15,8 @@ key = "PJv71zxlt65ihzFpAKRuP6HQ3zaCJDQ9"
 # GUI Settings
 window = Tk()
 window.title("MapQuest Pathfinder 2.0")
-window.geometry("600x300")
-window.resizable(False, False) 
+window.geometry("400x300")
+window.resizable(False, False)
 
 global orig, dest
 orig = StringVar()
@@ -32,21 +32,24 @@ def getInput():
     if json_status == 0:
         print(Fore.GREEN + "API Status " + str(json_status) + " = Congratulations! A successful route call.\n")
 
-        label_intro = Label(window, text="What would you like to know about \n"+ orig.get() +" to "+ dest.get() +"?")
-        label_intro.grid(row=4, column=1, padx=5, pady=10)
+        label_intro = Label(window, text="Menu")
+        label_intro.grid(row=4, column=0, padx=5, pady=10, sticky=W)
        
         # Display buttons
         btn_choice1 = Button(window, text="General Info", command=choice1)
-        btn_choice1.grid(row=5, column=1, sticky=W, padx=5, pady=10)
+        btn_choice1.grid(row=5, column=0, padx=5, pady=5, sticky=W)
        
         btn_choice2 = Button(window, text="Restrictions", command=choice2)
-        btn_choice2.grid(row=7, column=1, sticky=W, padx=5, pady=10)
+        btn_choice2.grid(row=7, column=0, padx=5, pady=5, sticky=W)
        
         btn_choice3 = Button(window, text="Miscellaneous", command=choice3)
-        btn_choice3.grid(row=5, column=2, sticky=W, padx=5, pady=10)
+        btn_choice3.grid(row=5, column=1, padx=5, pady=5, sticky=W)
 
         btn_choice4 = Button(window, text="Directions", command=choice4)
-        btn_choice4.grid(row=7, column=2, sticky=W, padx=5, pady=10)
+        btn_choice4.grid(row=7, column=1, padx=5, pady=5, sticky=W)
+
+        btn_reset = Button(window, command=reset, text="Reset")
+        btn_reset.grid(row=10, column=2, sticky=W)
     
     # Output if unsuccessful json route calls
     elif json_status == 402: # Invalid user input
@@ -149,7 +152,6 @@ def choice4():
 
     top = Toplevel()
     top.title("Directions")
-    top.geometry("600x400")
     top.resizable(False, False) 
 
     for each in json_data["route"]["legs"][0]["maneuvers"]:
@@ -159,24 +161,21 @@ def choice4():
 def reset():
     orig.set("")
     dest.set("")
-   
+
 # GUI Design
 label_orig = Label(window, text="Starting Location: ")
-label_orig.grid(row=0, column=0, padx=5, pady=10)
+label_orig.grid(row=0, column=0, padx=5, pady=10, sticky=W)
 
 label_dest = Label(window, text="Destination: ")
-label_dest.grid(row=1, column=0, padx=5, pady=10)
+label_dest.grid(row=1, column=0, padx=5, pady=10, sticky=W)
 
 txtbox_orig = Entry(window, textvariable=orig)
-txtbox_orig.grid(row=0, column=1)
+txtbox_orig.grid(row=0, column=1, sticky=W)
 
 txtbox_dest = Entry(window, textvariable=dest)
-txtbox_dest.grid(row=1, column=1)
+txtbox_dest.grid(row=1, column=1, sticky=W)
 
 btn_find = Button(window, command=getInput, text="Find")
 btn_find.grid(row=2, column=1, sticky=W)
-
-btn_reset = Button(window, command=reset, text="Reset")
-btn_reset.grid(row=2, column=2, sticky=W)
 
 window.mainloop()
