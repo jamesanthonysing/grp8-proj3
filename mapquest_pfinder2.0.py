@@ -99,7 +99,7 @@ def choice1():
 
     top = Toplevel()
     top.title("General Info")
-    top.geometry("200x100")
+    top.geometry("200x200")
     top.resizable(False, False) 
 
     label_output = Label(top, 
@@ -116,7 +116,7 @@ def choice2():
 
     top = Toplevel()
     top.title("Restrictions")
-    top.geometry("200x100")
+    top.geometry("200x200")
     top.resizable(False, False) 
 
     label_output = Label(top, text=
@@ -131,7 +131,7 @@ def choice3():
 
     top = Toplevel()
     top.title("Miscellaneous")
-    top.geometry("400x100")
+    top.geometry("400x200")
     top.resizable(False, False) 
 
     label_output = Label(top, text=
@@ -149,12 +149,12 @@ def choice4():
 
     top = Toplevel()
     top.title("Directions")
-    top.geometry("200x100")
+    top.geometry("600x400")
     top.resizable(False, False) 
 
     for each in json_data["route"]["legs"][0]["maneuvers"]:
         label_output = Label(top, text=((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)")))
-        label_output.grid(row=9, column=1, padx=5, pady=10)
+        label_output.grid()
 
 def reset():
     orig.set("")
