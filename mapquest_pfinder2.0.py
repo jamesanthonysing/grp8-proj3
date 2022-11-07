@@ -38,6 +38,7 @@ def getInput():
         btn_choice3.grid(row=5, column=1, padx=5, pady=5, sticky=W)
         btn_choice4.grid(row=7, column=1, padx=5, pady=5, sticky=W)
         btn_reset.grid(row=10, column=2, sticky=W)
+        btn_find.grid_forget()
 
     # Output if unsuccessful json route calls
     elif json_status == 402: 
@@ -148,7 +149,7 @@ def choice3():
 
     top = Toplevel()
     top.title("Miscellaneous")
-    top.geometry("400x200")
+    top.geometry("400x300")
     top.resizable(False, False) 
 
     lbl_output = Label(top, text=
@@ -186,6 +187,7 @@ def reset():
     btn_choice3.grid_forget()
     btn_choice4.grid_forget()
     btn_reset.grid_forget()
+    btn_find.grid(row=2, column=1, sticky=W)
 
 # GUI Design
 lbl_orig = Label(window, text="Starting Location: ")
@@ -204,7 +206,7 @@ btn_find = Button(window, command=getInput, text="Find")
 btn_find.grid(row=2, column=1, sticky=W)
 
 # Menu
-lbl_intro = Label(window, text="Menu")
+lbl_intro = Label(window, text="Menu", font="Ubuntu 15 bold")
 btn_choice1 = Button(window, text="General Info", command=choice1)
 btn_choice2 = Button(window, text="Restrictions", command=choice2)
 btn_choice3 = Button(window, text="Miscellaneous", command=choice3)
