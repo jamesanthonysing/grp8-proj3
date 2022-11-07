@@ -161,7 +161,7 @@ def choice3():
     "Has unpaved: " + str(json_data["route"]["hasUnpaved"]) + "\n\n" +
 
     "Latitude of " + orig.get() + ": " + str(json_data["route"]["locations"][0]["latLng"]["lat"]) + "\n" +
-    "Longtitude of " + dest.get() + ": " + str(json_data["route"]["locations"][1]["latLng"]["lat"]) + "\n\n" +
+    "Longitude of " + dest.get() + ": " + str(json_data["route"]["locations"][1]["latLng"]["lat"]) + "\n\n" +
 
     "Geo Quality Code of " + orig.get() + ": " + (json_data["route"]["locations"][0]["geocodeQualityCode"]) + "\n" +
     "Geo Quality Code of " + dest.get() + ": " + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
