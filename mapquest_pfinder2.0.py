@@ -42,28 +42,28 @@ def getInput():
         btn_find.grid_forget()
 
     # Output if unsuccessful json route calls
-    elif json_status == 402: 
+    elif json_status == 402: #Error 402: Invalid user inputs
         messagebox.showerror("Error", "Oops! We encountered an error.\n" + 
         "Status Code: " + str(json_status) + 
         "; \n Invalid user inputs for one or both locations.")
 
         print(Fore.RED + "Oops! We encountered an error.")
         print(Fore.RED + "Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.\n")
-    elif json_status == 611: 
+    elif json_status == 611: #Error 611: Missing an entry 
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "Status Code: " + str(json_status) + 
         "; \n Missing an entry for one or both locations.")
 
         print(Fore.RED + "Oops! We encountered an error.")
         print(Fore.RED + "Status Code: " + str(json_status) + "; Missing an entry for one or both locations.\n")
-    elif json_status == 500: 
+    elif json_status == 500: #Error 500: Error could not complete
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "Status Code: " + str(json_status) +
         "; \n The server encountered an error and could not complete your request.")
 
         print(Fore.RED + "Oops! We encountered an error.")
         print(Fore.RED + "Status Code: " + str(json_status) + "; The server encountered an error and could not complete your request.\n")
-    elif json_status == 404: 
+    elif json_status == 404: #Error 404: URL does not exist
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "Status Code: " + str(json_status) +
         "; \n The resource addressed by the request URL does not exist.")
