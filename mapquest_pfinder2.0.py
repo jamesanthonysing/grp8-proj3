@@ -34,13 +34,13 @@ def getInput():
     if json_status == 0:
         print(Fore.GREEN + "API Status " + str(json_status) + " = Congratulations! A successful route call.\n")
 
-        label_intro.grid(row=4, column=0, padx=5, pady=10, sticky=W)
+        lbl_intro.grid(row=4, column=0, padx=5, pady=10, sticky=W)
         btn_choice1.grid(row=5, column=0, padx=5, pady=5, sticky=W)
         btn_choice2.grid(row=7, column=0, padx=5, pady=5, sticky=W)
         btn_choice3.grid(row=5, column=1, padx=5, pady=5, sticky=W)
         btn_choice4.grid(row=7, column=1, padx=5, pady=5, sticky=W)
         btn_reset.grid(row=10, column=2, sticky=W)
-    
+
     # Output if unsuccessful json route calls
     elif json_status == 402: # Invalid user input
         messagebox.showerror("Error", "Oops! We encountered an error.\n" + 
@@ -95,14 +95,14 @@ def choice1():
     top.geometry("200x200")
     top.resizable(False, False) 
 
-    label_output = Label(top, 
+    lbl_output = Label(top, 
     text="Trip Duration: " + str(json_data["route"]["formattedTime"]) + "\n" + 
     "Distance: \n" +
     "(in mi): " + str("{:.2f}".format(distMi)) + " m \n" +
     "(in km): " + str("{:.2f}".format(distKm)) + " km \n" +
     "(in m): " + str("{:.2f}".format(distM)) + " m \n")
     
-    label_output.grid(padx=5, pady=10)
+    lbl_output.grid(padx=5, pady=10)
 
 def choice2():
     json_data = getInput()
@@ -112,12 +112,12 @@ def choice2():
     top.geometry("200x200")
     top.resizable(False, False) 
 
-    label_output = Label(top, text=
+    lbl_output = Label(top, text=
     "Timed restriction: " + str(json_data["route"]["hasSeasonalClosure"]) + "\n" +
     "Seasonal closure: " + str(json_data["route"]["hasSeasonalClosure"]) + "\n" +
     "Country cross: " + str(json_data["route"]["hasCountryCross"]) + "\n")
 
-    label_output.grid(padx=5, pady=10)
+    lbl_output.grid(padx=5, pady=10)
 
 def choice3():
     json_data = getInput()
@@ -127,7 +127,7 @@ def choice3():
     top.geometry("400x200")
     top.resizable(False, False) 
 
-    label_output = Label(top, text=
+    lbl_output = Label(top, text=
     "Has toll road: " + str(json_data["route"]["hasTollRoad"]) + "\n" +
     "Has tunnel: " + str(json_data["route"]["hasTunnel"]) + "\n" +
     "Has highway: " + str(json_data["route"]["hasHighway"]) + "\n" +
@@ -135,7 +135,7 @@ def choice3():
     "Geo Quality Code of " + orig.get() + ": " + (json_data["route"]["locations"][0]["geocodeQualityCode"]) + "\n" +
     "Geo Quality Code of " + dest.get() + ": " + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
     
-    label_output.grid(padx=5, pady=10)
+    lbl_output.grid(padx=5, pady=10)
 
 def choice4():
     json_data = getInput()
@@ -145,21 +145,25 @@ def choice4():
     top.resizable(False, False) 
 
     for each in json_data["route"]["legs"][0]["maneuvers"]:
-        label_output = Label(top, text=((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)")))
-        label_output.grid()
+        lbl_output = Label(top, text=((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)")))
+        lbl_output.grid()
 
 def reset():
     orig.set("")
     dest.set("")
-    btn_choice1.pack_forget()
-    btn_reset.pack_forget()
+    lbl_intro.grid_forget()
+    btn_choice1.grid_forget()
+    btn_choice2.grid_forget()
+    btn_choice3.grid_forget()
+    btn_choice4.grid_forget()
+    btn_reset.grid_forget()
 
 # GUI Design
-label_orig = Label(window, text="Starting Location: ")
-label_orig.grid(row=0, column=0, padx=5, pady=10, sticky=W)
+lbl_orig = Label(window, text="Starting Location: ")
+lbl_orig.grid(row=0, column=0, padx=5, pady=10, sticky=W)
 
-label_dest = Label(window, text="Destination: ")
-label_dest.grid(row=1, column=0, padx=5, pady=10, sticky=W)
+lbl_dest = Label(window, text="Destination: ")
+lbl_dest.grid(row=1, column=0, padx=5, pady=10, sticky=W)
 
 txtbox_orig = Entry(window, textvariable=orig)
 txtbox_orig.grid(row=0, column=1, sticky=W)
@@ -171,12 +175,11 @@ btn_find = Button(window, command=getInput, text="Find")
 btn_find.grid(row=2, column=1, sticky=W)
 
 # Menu
-label_intro = Label(window, text="Menu")
+lbl_intro = Label(window, text="Menu")
 btn_choice1 = Button(window, text="General Info", command=choice1)
 btn_choice2 = Button(window, text="Restrictions", command=choice2)
 btn_choice3 = Button(window, text="Miscellaneous", command=choice3)
 btn_choice4 = Button(window, text="Directions", command=choice4)
-
 btn_reset = Button(window, command=reset, text="Reset")
 
 window.mainloop()
