@@ -5,6 +5,7 @@ import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
 from tkinter import *
+from tkinter import messagebox
 
 # Import MapQuest API
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
@@ -48,31 +49,26 @@ def getInput():
     
     # Output if unsuccessful json route calls
     elif json_status == 402: # Invalid user input
-        print("****************************************")
-        print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
-        print("****************************************")
+        messagebox.showerror("Error", "Oops! We encountered an error.\n" + 
+        "Status Code: " + str(json_status) + 
+        "; \n Invalid user inputs for one or both locations.")
     elif json_status == 611: # Missing entry
-        print("****************************************")
-        print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; Missing an entry for one or both locations.")
-        print("****************************************")
+        messagebox.showerror("Error", "Oops! We encountered an error.\n" +
+        "Status Code: " + str(json_status) + 
+        "; \n Missing an entry for one or both locations.")
     elif json_status == 500: # Added status code 500
-        print("****************************************")
-        print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; The server encountered an error and could not complete your request.")
-        print("****************************************")
+        messagebox.showerror("Error", "Oops! We encountered an error.\n" +
+        "Status Code: " + str(json_status) +
+        "; \n The server encountered an error and could not complete your request.")
     elif json_status == 404: # Added status code 404
-        print("****************************************")
-        print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; The resource addressed by the request URL does not exist.")
-        print("****************************************")
+        messagebox.showerror("Error", "Oops! We encountered an error.\n" +
+        "Status Code: " + str(json_status) +
+        "; \n The resource addressed by the request URL does not exist.")
     else:
-        print("****************************************")
-        print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "For Status Code: " + str(json_status) + "; Refer to:")
-        print(Fore.RED + "https://developer.mapquest.com/documentation/directions-api/status-codes")
-        print("****************************************\n")
+        messagebox.showerror("Error", "Oops! We encountered an error.\n" +
+        "For Status Code: " + str(json_status) + "; \n Refer to:" +
+        "https://developer.mapquest.com/documentation/directions-api/status-codes")
+
     return json_data
 
 # Choices
