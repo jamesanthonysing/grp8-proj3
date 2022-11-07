@@ -94,7 +94,7 @@ def choice1():
     top.resizable(False, False) 
 
     lbl_output = Label(top, text= 
-    "Starting Location Details: " + "\n" + 
+    "Starting Location Info: " + "\n" + 
     str(json_data["route"]["locations"][0]["adminArea5Type"]) + ": " 
     + str(json_data["route"]["locations"][0]["adminArea5"]) + "\n" +
 
@@ -107,7 +107,7 @@ def choice1():
     str(json_data["route"]["locations"][0]["adminArea1Type"]) + ": " 
     + str(json_data["route"]["locations"][0]["adminArea1"]) + "\n\n" +
 
-    "Destination Details: " + "\n" + 
+    "Destination Info: " + "\n" + 
     str(json_data["route"]["locations"][1]["adminArea5Type"]) + ": " 
     + str(json_data["route"]["locations"][1]["adminArea5"]) + "\n" +
 
@@ -156,10 +156,10 @@ def choice3():
     "Has tunnel: " + str(json_data["route"]["hasTunnel"]) + "\n" +
     "Has highway: " + str(json_data["route"]["hasHighway"]) + "\n" +
     "Has ferry: " + str(json_data["route"]["hasFerry"]) + "\n" +
-    "Has unpaved: " + str(json_data["route"]["hasUnpaved"]) + "\n" +
+    "Has unpaved: " + str(json_data["route"]["hasUnpaved"]) + "\n\n" +
 
     "Latitude of " + orig.get() + ": " + str(json_data["route"]["locations"][0]["latLng"]["lat"]) + "\n" +
-    "Longtitude of " + dest.get() + ": " + str(json_data["route"]["locations"][1]["latLng"]["lat"]) + "\n" +
+    "Longtitude of " + dest.get() + ": " + str(json_data["route"]["locations"][1]["latLng"]["lat"]) + "\n\n" +
 
     "Geo Quality Code of " + orig.get() + ": " + (json_data["route"]["locations"][0]["geocodeQualityCode"]) + "\n" +
     "Geo Quality Code of " + dest.get() + ": " + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
