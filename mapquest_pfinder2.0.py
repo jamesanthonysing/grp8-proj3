@@ -1,6 +1,5 @@
 # MapQuest Pathfinder 2.0 | by Group 8 - 4ITI
 
-# Import needed libraries
 from enum import auto
 import urllib.parse
 import requests
@@ -10,7 +9,6 @@ from tkinter import messagebox
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
 
-# Import MapQuest API
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "PJv71zxlt65ihzFpAKRuP6HQ3zaCJDQ9"
 
@@ -42,28 +40,28 @@ def getInput():
         btn_reset.grid(row=10, column=2, sticky=W)
 
     # Output if unsuccessful json route calls
-    elif json_status == 402: # Invalid user input
+    elif json_status == 402: 
         messagebox.showerror("Error", "Oops! We encountered an error.\n" + 
         "Status Code: " + str(json_status) + 
         "; \n Invalid user inputs for one or both locations.")
 
         print(Fore.RED + "Oops! We encountered an error.")
         print(Fore.RED + "Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.\n")
-    elif json_status == 611: # Missing entry
+    elif json_status == 611: 
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "Status Code: " + str(json_status) + 
         "; \n Missing an entry for one or both locations.")
 
         print(Fore.RED + "Oops! We encountered an error.")
         print(Fore.RED + "Status Code: " + str(json_status) + "; Missing an entry for one or both locations.\n")
-    elif json_status == 500: # Added status code 500
+    elif json_status == 500: 
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "Status Code: " + str(json_status) +
         "; \n The server encountered an error and could not complete your request.")
 
         print(Fore.RED + "Oops! We encountered an error.")
         print(Fore.RED + "Status Code: " + str(json_status) + "; The server encountered an error and could not complete your request.\n")
-    elif json_status == 404: # Added status code 404
+    elif json_status == 404: 
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "Status Code: " + str(json_status) +
         "; \n The resource addressed by the request URL does not exist.")
@@ -81,12 +79,12 @@ def getInput():
 
     return json_data
 
-# Choices
+
 def choice1():
     json_data = getInput()
 
     distMi = (json_data["route"]["distance"])
-    # Distance conversion
+    
     distKm = (json_data["route"]["distance"])*1.61
     distM = (json_data["route"]["distance"])*1609.344
 
@@ -131,7 +129,7 @@ def choice3():
     "Has toll road: " + str(json_data["route"]["hasTollRoad"]) + "\n" +
     "Has tunnel: " + str(json_data["route"]["hasTunnel"]) + "\n" +
     "Has highway: " + str(json_data["route"]["hasHighway"]) + "\n" +
-    # Geo Quality Code
+    
     "Geo Quality Code of " + orig.get() + ": " + (json_data["route"]["locations"][0]["geocodeQualityCode"]) + "\n" +
     "Geo Quality Code of " + dest.get() + ": " + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
     
