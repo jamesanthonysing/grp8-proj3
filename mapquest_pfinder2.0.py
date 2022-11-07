@@ -81,7 +81,7 @@ def getInput():
 
     return json_data
 
-
+# Choices for the distance, route, locations and trip duration
 def choice1():
     json_data = getInput()
 
@@ -178,8 +178,8 @@ def choice4():
     for each in json_data["route"]["legs"][0]["maneuvers"]:
         lbl_output = Label(top, text=((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)")))
         lbl_output.grid()
-
-def reset():
+# reset button
+def reset(): 
     orig.set("")
     dest.set("")
     lbl_intro.grid_forget()
