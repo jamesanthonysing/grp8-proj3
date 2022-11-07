@@ -109,7 +109,7 @@ def choice1():
     "(in km): " + str("{:.2f}".format(distKm)) + " km \n" +
     "(in m): " + str("{:.2f}".format(distM)) + " m \n")
     
-    label_output.grid(row=9, column=1, padx=5, pady=10)
+    label_output.grid(padx=5, pady=10)
 
 def choice2():
     json_data = getInput()
@@ -124,7 +124,7 @@ def choice2():
     "Seasonal closure: " + str(json_data["route"]["hasSeasonalClosure"]) + "\n" +
     "Country cross: " + str(json_data["route"]["hasCountryCross"]) + "\n")
 
-    label_output.grid(row=9, column=1, padx=5, pady=10)
+    label_output.grid(padx=5, pady=10)
 
 def choice3():
     json_data = getInput()
@@ -142,7 +142,7 @@ def choice3():
     "Geo Quality Code of " + orig.get() + ": " + (json_data["route"]["locations"][0]["geocodeQualityCode"]) + "\n" +
     "Geo Quality Code of " + dest.get() + ": " + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
     
-    label_output.grid(row=9, column=1, padx=5, pady=10)
+    label_output.grid(padx=5, pady=10)
 
 def choice4():
     json_data = getInput()
