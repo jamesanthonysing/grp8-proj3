@@ -90,11 +90,37 @@ def choice1():
 
     top = Toplevel()
     top.title("General Info")
-    top.geometry("200x200")
+    top.geometry("200x400")
     top.resizable(False, False) 
 
-    lbl_output = Label(top, 
-    text="Trip Duration: " + str(json_data["route"]["formattedTime"]) + "\n" + 
+    lbl_output = Label(top, text= 
+    "Starting Location Details: " + "\n" + 
+    str(json_data["route"]["locations"][0]["adminArea5Type"]) + ": " 
+    + str(json_data["route"]["locations"][0]["adminArea5"]) + "\n" +
+
+    str(json_data["route"]["locations"][0]["adminArea4Type"]) + ": " 
+    + str(json_data["route"]["locations"][0]["adminArea4"]) + "\n" +
+
+    str(json_data["route"]["locations"][0]["adminArea3Type"]) + ": " 
+    + str(json_data["route"]["locations"][0]["adminArea3"]) + "\n" +
+
+    str(json_data["route"]["locations"][0]["adminArea1Type"]) + ": " 
+    + str(json_data["route"]["locations"][0]["adminArea1"]) + "\n\n" +
+
+    "Destination Details: " + "\n" + 
+    str(json_data["route"]["locations"][1]["adminArea5Type"]) + ": " 
+    + str(json_data["route"]["locations"][1]["adminArea5"]) + "\n" +
+
+    str(json_data["route"]["locations"][1]["adminArea4Type"]) + ": " 
+    + str(json_data["route"]["locations"][1]["adminArea4"]) + "\n" +
+
+    str(json_data["route"]["locations"][1]["adminArea3Type"]) + ": " 
+    + str(json_data["route"]["locations"][1]["adminArea3"]) + "\n" +
+
+    str(json_data["route"]["locations"][1]["adminArea1Type"]) + ": " 
+    + str(json_data["route"]["locations"][1]["adminArea1"]) + "\n\n" +
+    
+    "Trip Duration: " + str(json_data["route"]["formattedTime"]) + "\n" + 
     "Distance: \n" +
     "(in mi): " + str("{:.2f}".format(distMi)) + " m \n" +
     "(in km): " + str("{:.2f}".format(distKm)) + " km \n" +
@@ -129,7 +155,12 @@ def choice3():
     "Has toll road: " + str(json_data["route"]["hasTollRoad"]) + "\n" +
     "Has tunnel: " + str(json_data["route"]["hasTunnel"]) + "\n" +
     "Has highway: " + str(json_data["route"]["hasHighway"]) + "\n" +
-    
+    "Has ferry: " + str(json_data["route"]["hasFerry"]) + "\n" +
+    "Has unpaved: " + str(json_data["route"]["hasUnpaved"]) + "\n" +
+
+    "Latitude of " + orig.get() + ": " + str(json_data["route"]["locations"][0]["latLng"]["lat"]) + "\n" +
+    "Longtitude of " + dest.get() + ": " + str(json_data["route"]["locations"][1]["latLng"]["lat"]) + "\n" +
+
     "Geo Quality Code of " + orig.get() + ": " + (json_data["route"]["locations"][0]["geocodeQualityCode"]) + "\n" +
     "Geo Quality Code of " + dest.get() + ": " + (json_data["route"]["locations"][1]["geocodeQualityCode"]))
     
