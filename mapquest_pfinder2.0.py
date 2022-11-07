@@ -55,32 +55,28 @@ def getInput():
         "; \n Invalid user inputs for one or both locations.")
 
         print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
-        print("****************************************")
+        print(Fore.RED + "Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.\n")
     elif json_status == 611: # Missing entry
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "Status Code: " + str(json_status) + 
         "; \n Missing an entry for one or both locations.")
 
         print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; Missing an entry for one or both locations.")
-        print("****************************************")
+        print(Fore.RED + "Status Code: " + str(json_status) + "; Missing an entry for one or both locations.\n")
     elif json_status == 500: # Added status code 500
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "Status Code: " + str(json_status) +
         "; \n The server encountered an error and could not complete your request.")
 
         print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; The server encountered an error and could not complete your request.")
-        print("****************************************")
+        print(Fore.RED + "Status Code: " + str(json_status) + "; The server encountered an error and could not complete your request.\n")
     elif json_status == 404: # Added status code 404
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "Status Code: " + str(json_status) +
         "; \n The resource addressed by the request URL does not exist.")
 
         print(Fore.RED + "Oops! We encountered an error.")
-        print(Fore.RED + "Status Code: " + str(json_status) + "; The resource addressed by the request URL does not exist.")
-        print("****************************************")
+        print(Fore.RED + "Status Code: " + str(json_status) + "; The resource addressed by the request URL does not exist.\n")
     else:
         messagebox.showerror("Error", "Oops! We encountered an error.\n" +
         "For Status Code: " + str(json_status) + "; \n Refer to:" +
@@ -88,8 +84,7 @@ def getInput():
 
         print(Fore.RED + "Oops! We encountered an error.")
         print(Fore.RED + "For Status Code: " + str(json_status) + "; Refer to:")
-        print(Fore.RED + "https://developer.mapquest.com/documentation/directions-api/status-codes")
-        print("****************************************")
+        print(Fore.RED + "https://developer.mapquest.com/documentation/directions-api/status-codes\n")
 
     return json_data
 
